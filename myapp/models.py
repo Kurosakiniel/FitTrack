@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import models
 
 class BaseModel(models.Model):
@@ -13,11 +14,11 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
         
-class Usuario(AbstractUser):
+class Usuario(AbstractUser, LoginRequiredMixin):
     peso_atual = models.FloatField(null=True)
     altura = models.FloatField(null=True)
 
-class PlanoTreino(BaseModel):
+class PlanoTreino(BaseModel, LoginRequiredMixin):
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
 
@@ -34,7 +35,7 @@ class PlanoTreino(BaseModel):
 
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="treinos")
 
-class PlanoDieta(BaseModel):
+class PlanoDieta(BaseModel, LoginRequiredMixin):
     calorias_por_dia = models.IntegerField()
     refeicoes = models.TextField()
     restricoes = models.TextField(blank=True)
