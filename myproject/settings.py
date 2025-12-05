@@ -30,8 +30,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-AUTH_USER_MODEL = 'myapp.Usuario'
+# Application definitio
+
 LOCAL_APPS = [
     'myapp',
 ]
@@ -145,6 +145,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5,
 }
@@ -153,6 +156,11 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
+
+AUTH_USER_MODEL = 'myapp.Usuario'
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/login/"
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Minha API Django',
