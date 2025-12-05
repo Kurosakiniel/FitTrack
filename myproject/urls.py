@@ -12,7 +12,7 @@ from .router.api import api_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(
-        "api/",
+        "api/v1/",
         include(
             (api_urls, "myproject.router.api.api_urls"),
             namespace="api"
