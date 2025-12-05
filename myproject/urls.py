@@ -7,12 +7,13 @@ from drf_spectacular.views import (
 )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+
 from .router.api import api_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(
-        "api/v1/",
+        'api/',
         include(
             (api_urls, "myproject.router.api.api_urls"),
             namespace="api"
